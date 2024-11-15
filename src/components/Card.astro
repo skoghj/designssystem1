@@ -1,0 +1,56 @@
+---
+const { url = "#", cardimage = "", cardimagealt = "", badgenyt = "false", badgerabat = "false", badgerabatsats = "", badgefaapladser = "false", holdnavn = "", tidspunkt = "", aldersgruppe = "", niveau = "", pladserpaaholdet = "", lokale = "", holdbeskrivelse = "", underviserfoto = "", underviserfotoalt = "", undervisernavn = "", underviserinfo = "" } = Astro.props;
+---
+
+<article class="card border-blue-500 border-2 @container">
+  <a href={url} class="flex flex-col justify-between h-full">
+    <header class="daseholdheader mb-xs relative">
+      <img src={cardimage} alt={cardimagealt} class="w-full object-cover h-[500px]" />
+      {badgenyt === "true" && <div class="badge absolute top-xs bg-blue-500 p-xs text-white">Nyt hold!</div>}
+      {
+        badgerabat === "true" && (
+          <div class="badge absolute top-xs bg-red-500 p-xs text-white right-[0]">
+            <span>10% rabat!</span>
+          </div>
+        )
+      }
+      {
+        badgefaapladser === "true" && (
+          <div class="badge absolute bottom-xs flex items-center bg-yellow-500 right-[0] text-black p-xs">
+            Kun få pladser tilbage{" "}
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-xs">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+              </svg>
+            </span>
+          </div>
+        )
+      }
+    </header>
+
+    <section class="holdinfo p-xs grow boder-b-2 border-blue-500">
+      <h3 class="text-small font-medium @lg:text-large mb-xs">{holdnavn}</h3>
+      <div class="flex flex-col @md:flex-row @md:justify-between mb-xs">
+        <div class="venstre grow font-medium">
+          <div><span>Tid:</span><span>{tidspunkt}</span></div>
+          <div><span>Alder:</span><span>{aldersgruppe}</span></div>
+          <div><span>Niveau:</span><span>{niveau}</span></div>
+        </div>
+        <div class="højre grow font-medium">
+          <div><span>Deltager:</span><span>{pladserpaaholdet}</span></div>
+          <div><span>Lokale:</span><span>{lokale}</span></div>
+        </div>
+      </div>
+      <div class="pb-xs">
+        <p>{holdbeskrivelse}</p>
+      </div>
+    </section>
+    <section class="grid grid-cols-[1fr_3fr] py-s px-xs gap-xs items-center justify-center border-t-2 border-blue-500">
+      <div class="w-full"><img src={underviserfoto} alt={underviserfotoalt} class="object-cover w-4xl rounded-full mx-auto" /></div>
+      <div class="flex flex-col">
+        <p>Underviser: {undervisernavn}</p>
+        <p>{underviserinfo}</p>
+      </div>
+    </section>
+  </a>
+</article>
